@@ -23,5 +23,5 @@ public class Cantor {
     private String pais;
 
     @OneToMany(mappedBy = "cantor")
-    Set<Gravacao> gravações;
+    private Set<Gravacao> gravacoes;
 }

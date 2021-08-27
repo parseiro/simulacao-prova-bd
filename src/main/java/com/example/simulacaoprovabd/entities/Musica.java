@@ -39,6 +39,6 @@ public class Musica {
 
     @Setter
     @Getter
-    @ManyToOne
+    @OneToMany(mappedBy = "musica")
     private Set<Gravacao> gravacoes;
 }
