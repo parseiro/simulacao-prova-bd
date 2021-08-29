@@ -1,6 +1,8 @@
 package com.example.simulacaoprovabd.entities;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Table(name = "gravacao")
 @Entity
+@NoArgsConstructor
 public class Gravacao {
     @Getter
     @Id

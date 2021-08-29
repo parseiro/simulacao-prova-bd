@@ -1,0 +1,49 @@
+spring:
+  profiles.active: dev
+  jpa:
+    open-in-view: true
+
+server:
+  port: 8080
+  #  servlet:
+  #    context-path: /plantones_resource_srvr
+
+  # *******Logging*******
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    springframework:
+      security: DEBUG
+
+  # *******OAuth Config*******
+  #security.oauth2.resource.user-info-uri=http://localhost:8282/plantones_auth_srvr/user
+
+  #spring.main.allow-bean-definition-overriding=true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mariadb://localhost/simulador-prova-db
+    username: leopinheiro
+    password: T72Fyub&r4jilKEW
+    driver-class-name: org.mariadb.jdbc.Driver
+  devtools:
+    add-properties: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        format_sql: true

@@ -1,6 +1,8 @@
 package com.example.simulacaoprovabd.entities;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
 public class Categoria {
     @Getter
     @Id
