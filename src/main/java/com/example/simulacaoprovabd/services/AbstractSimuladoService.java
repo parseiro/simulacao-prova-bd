@@ -11,12 +11,13 @@ public interface AbstractSimuladoService {
     Musica salvar(Musica musica);
     Pessoa salvar(Pessoa pessoa);
 
-    void excluirCantor(Integer id);
-    void excluirCategoria(Integer id);
-    void excluirFone(Integer id);
-    void excluirGravacao(Integer id);
-    void excluirGravadora(Integer id);
-    void excluirMusica(Integer id);
-    void excluirPessoa(Integer id);
+    void excluirCantorById(Integer id);
+    void excluirCategoriaById(Integer id);
+    void excluirFoneById(Integer id);
+    void excluirGravacaoById(Integer id);
+    void excluirGravadoraById(Integer id);
+    void excluirMusicaById(Integer id);
+    void excluirPessoaById(Integer id);
+    void excluirPessoaById(Integer... ids);
 
 }

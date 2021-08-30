@@ -27,12 +27,14 @@ public class Gravacao {
 
     @Setter
     @Getter
+    @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "cod_cantor", nullable = false)
     private Cantor cantor;
 
     @Setter
     @Getter
+    @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "musica_cod_musica", nullable = false)
     private Musica musica;

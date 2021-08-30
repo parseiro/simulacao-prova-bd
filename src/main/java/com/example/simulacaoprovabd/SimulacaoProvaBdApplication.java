@@ -10,6 +10,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @SpringBootApplication
 @Slf4j
 public class SimulacaoProvaBdApplication {
@@ -23,26 +26,47 @@ public class SimulacaoProvaBdApplication {
     @Bean
     public CommandLineRunner testPessoaComContatos() {
         return args -> {
-            var pessoa = new Pessoa();
-            pessoa.setNome("Devilson");
-
             {
-                var telefone1 = new Fone();
-                telefone1.setTipo("F");
-                telefone1.setNumero("123456");
-                telefone1.setPessoa(pessoa);
-                pessoa.getFones().add(telefone1);
+                var pessoa = new Pessoa();
+                pessoa.setNome("Devilson Coroados");
+
+                {
+                    var telefone1 = new Fone();
+                    telefone1.setTipo("F");
+                    telefone1.setNumero("123456");
+                    telefone1.setPessoa(pessoa);
+                    pessoa.getFones().add(telefone1);
+                }
+
+                {
+                    var telefone2 = new Fone();
+                    telefone2.setTipo("M");
+                    telefone2.setNumero("9876543");
+                    telefone2.setPessoa(pessoa);
+                    pessoa.getFones().add(telefone2);
+                }
+
+                myService.salvar(pessoa);
+                log.info("Salvei a pessoa {}", pessoa);
             }
 
             {
-                var telefone2 = new Fone();
-                telefone2.setTipo("M");
-                telefone2.setNumero("9876543");
-                telefone2.setPessoa(pessoa);
-                pessoa.getFones().add(telefone2);
+                List<Pessoa> pessoaList = myService.consultaPessoaPorNome("vilson");
+                log.info("Puxei do banco de dados a pessoaList: {}", pessoaList);
+/*                pessoaList.forEach(x -> {
+                    Integer id = x.getId();
+                    myService.excluirPessoaById(id);
+                    log.info("Exclui pessoa com id {}", id);
+                });*/
+                log.info("Vou excluir todos os itens encontrados");
+                var ids = pessoaList.parallelStream()
+                        .map(Pessoa::getId)
+                        .toArray(Integer[]::new);
+                myService.excluirPessoaById(ids);
+                log.info("Acabei de excluir todos os itens encontrados");
             }
-
-            myService.salvar(pessoa);
         };
     }
+
+
 }

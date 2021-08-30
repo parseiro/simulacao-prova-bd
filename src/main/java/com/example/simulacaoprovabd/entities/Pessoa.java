@@ -1,18 +1,22 @@
 package com.example.simulacaoprovabd.entities;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Table(name = "pessoa")
 @Entity
 @NoArgsConstructor
+@NamedEntityGraph(
+        name = "Pessoa.fones",
+        attributeNodes = @NamedAttributeNode("fones")
+)
 public class Pessoa {
     @Setter
     @Getter
@@ -27,8 +31,16 @@ public class Pessoa {
     @Column(name = "nome_pessoa", nullable = false, length = 50)
     private String nome;
 
-    @OneToMany(mappedBy = "pessoa")
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.REMOVE)
     @Getter
-    Set<Fone> fones = new HashSet<>();
+    List<Fone> fones = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", fones=" + fones +
+                '}';
+    }
 }

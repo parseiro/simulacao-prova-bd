@@ -44,4 +44,9 @@ public class Musica {
     @Getter
     @OneToMany(mappedBy = "musica")
     private Set<Gravacao> gravacoes;
+
+    @Transient
+    public boolean isNew() {
+        return null == this.getId();
+    }
 }

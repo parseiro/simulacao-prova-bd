@@ -28,4 +28,9 @@ public class Categoria {
     @Getter
     @OneToMany(mappedBy = "categoria")
     private Set<Musica> musicas;
+
+    @Transient
+    public boolean isNew() {
+        return null == this.getId();
+    }
 }

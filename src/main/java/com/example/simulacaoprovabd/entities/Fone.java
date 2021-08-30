@@ -39,4 +39,12 @@ public class Fone {
     @NotNull
     @JoinColumn(name = "cod_pessoa", nullable = false)
     private Pessoa pessoa;
+
+    @Override
+    public String toString() {
+        return "Fone{" +
+                "numero='" + numero + '\'' +
+                ", tipo='" + tipo + '\'' +
+                '}';
+    }
 }
